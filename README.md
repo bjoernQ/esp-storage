@@ -15,14 +15,17 @@ Buffers needs to be sized as a multiple of four bytes.
 
 ## Run examples
 
-`cargo "+esp" run --example demo --features esp32 --target xtensa-esp32-none-elf`
+ `cargo "+esp" run --example demo --features esp32 --target xtensa-esp32-none-elf`
+
 `cargo "+esp" run --example demo --features esp32s2 --target xtensa-esp32s2-none-elf`
+
 `cargo "+esp" run --example demo --features esp32s3 --target xtensa-esp32s3-none-elf`
+
 `cargo "+nightly" run --example demo --features esp32c3 --target riscv32imc-unknown-none-elf`
 
 ## Current Status
 
-ESP32C3 ok
-ESP32 doesn't work
-ESP32S2 doesn't work
-ESP32S3 ok
+- ESP32C3 ok
+- ESP32 doesn't work
+- ESP32S2 doesn't work
+- ESP32S3 ok
