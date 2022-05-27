@@ -9,13 +9,13 @@ The implementation uses ROM functions.
 
 This is work in progress! Don't use it!
 
-Currently it's not supported to read/write anything that is not aligned to page boundaries.
-Writing something that is smaller than a page currently will erase the remaining part of that page.
+Currently it's not supported to read/write anything that is not aligned to sector boundaries.
+Writing something that is smaller than a sector currently will erase the remaining part of that sector.
 Buffers needs to be sized as a multiple of four bytes.
 
 ## Run examples
 
- `cargo "+esp" run --example demo --features esp32 --target xtensa-esp32-none-elf`
+`cargo "+esp" run --example demo --features esp32 --target xtensa-esp32-none-elf --release`
 
 `cargo "+esp" run --example demo --features esp32s2 --target xtensa-esp32s2-none-elf`
 
@@ -25,7 +25,14 @@ Buffers needs to be sized as a multiple of four bytes.
 
 ## Current Status
 
-- ESP32C3 ok
-- ESP32 doesn't work
-- ESP32S2 doesn't work
-- ESP32S3 ok
+### ESP32C3
+Seems to work
+
+### ESP32
+Every write operation garbages the first four bytes. Only works when compiled with `release` profile.
+
+### ESP32S2
+Doesn't work
+
+### ESP32S3
+Seems to work

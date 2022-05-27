@@ -56,22 +56,27 @@ fn main() -> ! {
 
     let mut flash = FlashStorage::new();
 
+    let flash_addr = 0x9000;
     println!("Flash size = {}", flash.capacity());
 
-    flash.read(0x9000, &mut bytes).unwrap();
-    println!("Read from 0x9000:  {:02x?}", bytes);
+    flash.read(flash_addr, &mut bytes).unwrap();
+    println!("Read from {:x}:  {:02x?}", flash_addr, &bytes[..32]);
 
     bytes[0x00] = bytes[0x00].wrapping_add(1);
     bytes[0x01] = bytes[0x01].wrapping_add(2);
     bytes[0x02] = bytes[0x02].wrapping_add(3);
     bytes[0x03] = bytes[0x03].wrapping_add(4);
+    bytes[0x04] = bytes[0x04].wrapping_add(1);
+    bytes[0x05] = bytes[0x05].wrapping_add(2);
+    bytes[0x06] = bytes[0x06].wrapping_add(3);
+    bytes[0x07] = bytes[0x07].wrapping_add(4);
 
-    flash.write(0x9000, &bytes).unwrap();
-    println!("Written to 0x9000: {:02x?}", bytes);
+    flash.write(flash_addr, &bytes).unwrap();
+    println!("Written to {:x}: {:02x?}", flash_addr, &bytes[..32]);
 
     let mut reread_bytes = [0u8; 32];
-    flash.read(0x9000, &mut reread_bytes).unwrap();
-    println!("Read from 0x9000:  {:02x?}", reread_bytes);
+    flash.read(flash_addr, &mut reread_bytes).unwrap();
+    println!("Read from {:x}:  {:02x?}", flash_addr, &reread_bytes[..32]);
 
     loop {}
 }
